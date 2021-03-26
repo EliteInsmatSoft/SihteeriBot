@@ -56,29 +56,3 @@ client.on('message', message => {
 });
 
 void client.login(process.env.TOKEN);
-
-/*
- //if no server or no message content or message was send by bot, exit
-    if (!message.guild || !message.content.startsWith(prefix) || message.author.bot) return;
-
-    //extracting args and command, regex handles multiple spaces
-    const args = message.content.slice(prefix.length).trim().split(/ +/);
-    if(!args) return;
-    const command = args.shift()?.toLocaleLowerCase();
-
-    if (command === 'args-info') {
-        if (!args.length) {
-            void message.channel.send(`You didn't provide any arguments, ${message.author}!`);
-        }
-        void message.channel.send(`Command name: ${command}\nArguments: ${args}`);
-    } else if (command === 'kick') {
-        // grab the "first" mentioned user from the message
-        // this will return a `User` object, just like `message.author`
-        const taggedUser = message.mentions.users.first();
-        if(!taggedUser) {
-            void message.channel.send(`You need to tag a user in order to kick them ${message.author}!`);
-            return;
-        }
-        void message.channel.send(`You wanted to kick: ${taggedUser.username}`);
-    }
-*/

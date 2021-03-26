@@ -18,6 +18,13 @@ MUISTA:
 
 Jotta tuotanto versio generoidaan omalle koneellesi!
 
+ja
+
+### .env
+-tiedosto juureen jonne:
+* TOKEN=botintoken
+* PREFIX=!
+
 ## Uusien komentojen lisääminen
 
 Hakemistoon commands, tiedoston nimi muodossa: nimi.ts
