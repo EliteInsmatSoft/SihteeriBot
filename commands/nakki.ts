@@ -1,5 +1,11 @@
 import * as Discord from "discord.js";
 
+async function fetcheServerMembers(message: Discord.Message) {
+    if(!message.guild) return;
+    const members = await message.guild.members.fetch();
+    return members;
+}
+
 module.exports = {
 	name: 'nakki',
 	description: 'Nakki napsahti...',
@@ -12,10 +18,20 @@ module.exports = {
             //console.log(message.guild);
             if(!message.guild) return;
             console.log("Here");
-            void message.guild.members.fetch().then(fetchedMembers =>  {
+            void fetcheServerMembers(message).then(fetchedMembers =>  {
                 console.log(fetchedMembers);
                 //filter out bots
+                if(!fetchedMembers) return;
                 const user = fetchedMembers.filter(m => !m.user.bot).random().user;
+                void message.channel.send(`Nakki napsahti ${user}!`);
+            });
+        }
+        else if(args[1] === "online"){
+            void fetcheServerMembers(message).then(fetchedMembers => {
+                if(!fetchedMembers) return;
+                const totalOnline = fetchedMembers.filter(member => member.presence.status === 'online');
+                //We now have a collection with all online member objects in the totalOnline variable
+                const user = totalOnline.filter(m => !m.user.bot).random().user;
                 void message.channel.send(`Nakki napsahti ${user}!`);
             });
         }
@@ -24,16 +40,3 @@ module.exports = {
         }
 	},
 };
-
-/*
-//console.log("Vittu");
-                //const totalOnline = fetchedMembers.filter(member => member.presence.status === 'online');
-                // We now have a collection with all online member objects in the totalOnline variable
-                //console.log(`There are currently ${totalOnline.size} members online in this guild!`);
-                //void message.channel.send(`There are currently ${totalOnline.size} members online in this guild!`);
-                //return fetchedMembers;
-                if(!users) throw new Error("No users in server?");
-            console.log("klklkalsd");
-            void users.fetch().then(_members => console.log("!Nakki"));
-            console.log(users.resolve.toString());*/
-*/
