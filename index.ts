@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 import * as Discord from "discord.js";
 import fs from 'fs';
+import path from 'path';
 
 //vitun scuffed ratkasu
 interface Client extends Discord.Client {
@@ -20,7 +21,10 @@ client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.ts') || file.endsWith('.js'));
 
 async function importFile(file: string) {
-    const command = await import(`./commands/${file}`) as Command;
+    const fullPath = path.parse(`${__dirname}/commands/${file}`);
+    const filePath = fullPath.dir + "/" + fullPath.name;
+
+    const command = await import(filePath) as Command;
     client.commands.set(command.name, command);
     console.log(client.commands);
 }
