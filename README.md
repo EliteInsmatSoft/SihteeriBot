@@ -1,6 +1,6 @@
-# Sihteeri
+# Sihteeri 📜
 
-Tsugoi sihteeri-chan
+Tsugoi sihteeri-chan!
 
 ## Sovelluksen käyttäminen
 
@@ -11,6 +11,7 @@ Käynnistä dev serveri, älä käytä tuotannossa!
 ### npm start
 
 Käynnistää serverin build version tuotantoa varten.
+
 MUISTA:
 
 ### npm run build
@@ -20,8 +21,10 @@ Jotta tuotanto versio generoidaan omalle koneellesi!
 ## Uusien komentojen lisääminen
 
 Hakemistoon commands, tiedoston nimi muodossa: nimi.ts
-Tiedoston sisään: 
 
+Tiedoston sisään jotain tämän tapaista: 
+
+```
 import  Discord from "discord.js";
 
 module.exports = {
@@ -31,3 +34,9 @@ module.exports = {
 		//komennon toiminta
 	},
 };
+```
+
+## TODO
+
+* Testit
+* Uusia komentoja?
