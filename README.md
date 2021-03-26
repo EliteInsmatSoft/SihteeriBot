@@ -51,5 +51,9 @@ module.exports = {
 
 ## TODO
 
-* Testit
+* Testit jest/mocha/chai
 * Uusia komentoja?
+* Tyypitykset omaan tiedostoon
+* Joitain noita funktioit tuolta index.ts vois myös laittaa omiin tiedostoihinsa
+* Kun komentoja tulee lisää, voidaan niitä jakaa omiin alihakemistoihinsa
+* Kannattaa asentaa pm2 sit ku halutaa laittaa pyörii johonki raspillee jne.
