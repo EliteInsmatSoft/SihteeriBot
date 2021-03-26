@@ -1,11 +1,7 @@
 import dotenv from 'dotenv';
 dotenv.config();
 import * as Discord from "discord.js";
-//import { Client as _Clt, _Intents } from "discord.js";
 import fs from 'fs';
-
-//let intents = new Intents(Intents.NON_PRIVILEGED);
-//intents.add('GUILD_MEMBERS');
 
 //vitun scuffed ratkasu
 interface Client extends Discord.Client {
@@ -46,14 +42,12 @@ client.on('message', message => {
     const args = message.content.slice(prefix.length).trim().split(/ +/);
     if(!args) return;
     const command = args.shift()?.toLocaleLowerCase();
-    if(!command) return;
-
-    if(!client) return;
+    if(!command || !client) return;
 
 	try {
-        const c = client.commands.get(command);
-        if(!c) throw new Error("No command specifyed!");
-        c.execute(message, args);
+        const cmnds = client.commands.get(command);
+        if(!cmnds) throw new Error("No command specifyed!");
+        cmnds.execute(message, args);
     } catch (error) {
         const err = (error as Error).message;
         console.error(err);
