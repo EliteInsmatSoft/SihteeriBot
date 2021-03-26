@@ -12,7 +12,7 @@ interface Client extends Discord.Client {
 interface Command {
     name: string;
 	description: string;
-	execute: (message: Discord.Message, _args: string[]) => void;
+	execute: (message: Discord.Message, args: string[]) => void;
 }
 
 const client = new Discord.Client() as Client;
@@ -26,7 +26,6 @@ async function importFile(file: string) {
 
     const command = await import(filePath) as Command;
     client.commands.set(command.name, command);
-    console.log(client.commands);
 }
 
 for (const file of commandFiles) {
@@ -50,7 +49,7 @@ client.on('message', message => {
 
 	try {
         const cmnds = client.commands.get(command);
-        if(!cmnds) throw new Error("No command specifyed!");
+        if(!cmnds) throw new Error("No command specified!");
         cmnds.execute(message, args);
     } catch (error) {
         const err = (error as Error).message;
