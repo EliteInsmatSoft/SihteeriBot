@@ -1,8 +1,8 @@
 import Discord from "discord.js";
 
 
-const MIKA_STONKS = ":822028894432657408:";
-const MIKA_NOT_STONKS = ":821308808206876752:";
+const MIKA_STONKS = "<:mikaStonks:822028894432657408>";
+const MIKA_NOT_STONKS = "<:mikaNotStonks:821308808206876752>";
 
 const letterReaction = (i: number) => {
   const letters = "abcdefghijklmnopqrstuvwxyz";
@@ -14,7 +14,7 @@ module.exports = {
   description: "Äänestys aiheesta",
   async execute(message: Discord.Message, _args: string[]) {
     const args = _args.join(" ").split(";");
-    
+  
     const voteType = args?.[0].trim();
     switch (voteType) {
       default: {
