@@ -10,18 +10,15 @@ module.exports = {
 	name: 'nakki',
 	description: 'Nakki napsahti...',
 	execute(message: Discord.Message, args: string[]) {
-        // grab the "first" mentioned user from the message
+        // grab random mentioned user from mentions
         // this will return a `User` object, just like `message.author`
         const taggedUser = message.mentions.users.random();
 
 		if (!args.length || !taggedUser) {
-            //console.log(message.guild);
             if(!message.guild) return;
-            console.log("Here");
             void fetcheServerMembers(message).then(fetchedMembers =>  {
-                console.log(fetchedMembers);
-                //filter out bots
                 if(!fetchedMembers) return;
+                //filter out bots
                 const user = fetchedMembers.filter(m => !m.user.bot).random().user;
                 void message.channel.send(`Nakki napsahti ${user}!`);
             });
@@ -36,7 +33,7 @@ module.exports = {
             });
         }
         else {
-            void message.channel.send(`Nakki napsahti ${taggedUser.username}!`);
+            void message.channel.send(`Nakki napsahti ${taggedUser}!`);
         }
 	},
 };
