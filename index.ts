@@ -35,6 +35,8 @@ for (const file of commandFiles) {
 const prefix = process.env.PREFIX as string;
 
 client.once('ready', () => {
+    console.log("Loaded commands:");
+    client.commands.forEach((cmd) => console.log(`\t${cmd.name} - ${cmd.description}`));
 	console.log('Ready!');
 });
 
