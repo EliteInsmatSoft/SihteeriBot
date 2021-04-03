@@ -15,7 +15,7 @@ module.exports = {
   async execute(message: Discord.Message, _args: string[]) {
     const args = _args.join(" ").split(";");
   
-    const voteType = args?.[0].trim();
+    const voteType = args?.[0]?.trim();
     switch (voteType) {
       default: {
         message.channel.send("Ensimmäisen argumentin täytyy olla joko `yes/no` tai `multiple`");
@@ -24,7 +24,7 @@ module.exports = {
 
       // everyone votes either yes or no
       case "yes/no": {
-        const subject = args?.[1].trim(); 
+        const subject = args?.[1]?.trim(); 
 
         const reply = `Äänestys aiheesta:\n\n**${subject}**\n\n` +
           `Kyllä: ${MIKA_STONKS}\n` +
