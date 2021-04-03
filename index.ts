@@ -26,7 +26,6 @@ async function importFile(file: string) {
 
     const command = await import(filePath) as Command;
     client.commands.set(command.name, command);
-    console.log(client.commands);
 }
 
 for (const file of commandFiles) {
@@ -36,6 +35,8 @@ for (const file of commandFiles) {
 const prefix = process.env.PREFIX as string;
 
 client.once('ready', () => {
+    console.log("Loaded commands:");
+    client.commands.forEach((cmd) => console.log(`\t${cmd.name} - ${cmd.description}`));
 	console.log('Ready!');
 });
 
