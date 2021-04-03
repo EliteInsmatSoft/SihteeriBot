@@ -1,8 +1,8 @@
 import Discord from "discord.js";
 
 
-const MIKA_STONKS_ID = "822028894432657408";
-const MIKA_NOT_STONKS_ID = "821308808206876752";
+const MIKA_STONKS = ":822028894432657408:";
+const MIKA_NOT_STONKS = ":821308808206876752:";
 
 const letterReaction = (i: number) => {
   const letters = "abcdefghijklmnopqrstuvwxyz";
@@ -27,8 +27,8 @@ module.exports = {
         const subject = args?.[1].trim(); 
 
         const reply = `Äänestys aiheesta:\n\n**${subject}**\n\n` +
-          `Kyllä: ${MIKA_STONKS_ID}\n` +
-          `Ei: ${MIKA_NOT_STONKS_ID}\n`;
+          `Kyllä: ${MIKA_STONKS}\n` +
+          `Ei: ${MIKA_NOT_STONKS}\n`;
 
         await message.channel.send(reply);
         break;
