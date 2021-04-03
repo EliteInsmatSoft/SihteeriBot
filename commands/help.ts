@@ -7,6 +7,7 @@ module.exports = {
         void message.channel.send(`Commands:
         -!kick @someone: vote kick! 
         -!nakki online/@someone
+        -!vote tyyppi; aiheet; jaettuna; puolipisteillä;
         `);
 	},
 };
