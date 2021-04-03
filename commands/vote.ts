@@ -24,7 +24,7 @@ module.exports = {
 
       // everyone votes either yes or no
       case "yes/no": {
-        const subject = args?.[1]?.trim(); 
+        const subject = args?.[1]?.trim() || "-";
 
         const reply = `Äänestys aiheesta:\n\n**${subject}**\n\n` +
           `Kyllä: ${MIKA_STONKS}\n` +
@@ -37,6 +37,11 @@ module.exports = {
       // everyone can choose multiple choices
       case "multiple": {
         const choices = args?.slice(1);
+
+        if (choices.length === 0) {
+          await message.channel.send("Anna vähintään 1 aihe");
+          return;
+        }
 
         const formattedChoices = choices.map((choice, i) =>
           `${letterReaction(i)}: **${choice.trim()}**`).join("\n");
