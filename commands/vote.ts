@@ -7,7 +7,7 @@ const MIKA_NOT_STONKS = "<:mikaNotStonks:821308808206876752>";
 const letterReaction = (i: number) => {
   const letters = "abcdefghijklmnopqrstuvwxyz";
   return `:regional_indicator_${letters[i]}:`;
-}
+};
 
 module.exports = {
   name: "vote",
@@ -18,7 +18,7 @@ module.exports = {
     const voteType = args?.[0]?.trim();
     switch (voteType) {
       default: {
-        message.channel.send("Ensimmäisen argumentin täytyy olla joko `yes/no` tai `multiple`");
+        void message.channel.send("Ensimmäisen argumentin täytyy olla joko `yes/no` tai `multiple`");
         break;
       }
 
