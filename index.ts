@@ -5,7 +5,7 @@ import fs from 'fs';
 import path from 'path';
 
 //vitun scuffed ratkasu
-interface Client extends Discord.Client {
+export interface Client extends Discord.Client {
     commands: Discord.Collection<string, Command>;
 }
 
@@ -15,12 +15,19 @@ interface Command {
 	execute: (message: Discord.Message, args: string[]) => void;
 }
 
+interface Event {
+    name: string;
+	once: boolean;
+	execute: (client: Client) => void;
+}
+
 const client = new Discord.Client() as Client;
 client.commands = new Discord.Collection();
 
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.ts') || file.endsWith('.js'));
+const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.ts') || file.endsWith('.js'));
 
-async function importFile(file: string) {
+async function importCommand(file: string) {
     const fullPath = path.parse(`${__dirname}/commands/${file}`);
     const filePath = fullPath.dir + "/" + fullPath.name;
 
@@ -28,17 +35,28 @@ async function importFile(file: string) {
     client.commands.set(command.name, command);
 }
 
+async function importEvent(file: string) {
+    const fullPath = path.parse(`${__dirname}/events/${file}`);
+    const filePath = fullPath.dir + "/" + fullPath.name;
+
+    const event = await import(filePath) as Event;
+
+    if (event.once) {
+		client.once(event.name, () => event.execute(client));
+	} else {
+		client.on(event.name, () => event.execute(client));
+	}
+}
+
 for (const file of commandFiles) {
-    void importFile(file);
+    void importCommand(file);
+}
+
+for(const file of eventFiles) {
+    void importEvent(file);
 }
 
 const prefix = process.env.PREFIX as string;
-
-client.once('ready', () => {
-    console.log("Loaded commands:");
-    client.commands.forEach((cmd) => console.log(`\t${cmd.name} - ${cmd.description}`));
-	console.log('Ready!');
-});
 
 client.on('message', message => {
     if (!message.guild || !message.content.startsWith(prefix) || message.author.bot) return;
