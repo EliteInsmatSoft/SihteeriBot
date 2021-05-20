@@ -9,6 +9,7 @@ module.exports = {
         -!kick @someone: vote kick! 
         -!nakki online/@someone
         -!vote tyyppi; aiheet; jaettuna; puolipisteillä;
+        -!sihteeri: seuraava sihteeri
         `);
 	},
 };
