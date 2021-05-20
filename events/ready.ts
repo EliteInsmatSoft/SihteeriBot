@@ -40,15 +40,3 @@ module.exports = {
         });
 	},
 };
-
-export const shedule = (day: number, hour: number, minute: number, client: Client) => {
-  const rule = new schedule.RecurrenceRule();
-        rule.dayOfWeek = day;
-        rule.hour = hour; //parseInt(process.env.HOUR || "13")
-        rule.minute = minute;
-
-        schedule.scheduleJob(rule, function(){
-          const channel = client.channels.cache.get('821108614554189849') as TextChannel;
-          if(channel) channel?.send('@everyone Heipä hei mussukat! Muistakaahan, että meillä on kokus tänään kello 18 (ellei toisin olla sovittu)!');
-        });
-};
