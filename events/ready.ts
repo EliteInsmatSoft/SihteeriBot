@@ -14,8 +14,8 @@ module.exports = {
 
         const rule = new schedule.RecurrenceRule();
         rule.dayOfWeek = 4;
-        rule.hour = 13;
-        rule.minute = 0;
+        rule.hour = 10; //parseInt(process.env.HOUR || "13")
+        rule.minute = 40;
 
         schedule.scheduleJob(rule, function(){
           const channel = client.channels.cache.get('821108614554189849') as TextChannel;
