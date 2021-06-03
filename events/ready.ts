@@ -13,14 +13,14 @@ module.exports = {
 	once: true,
 	execute(client: Client) {
 		console.log("Loaded commands:");
-        client.commands.forEach((cmd) => console.log(`\t${cmd.name} - ${cmd.description}`));
+        client.commands.forEach((cmd) => console.log(`\t!${cmd.name} - ${cmd.description}`));
         console.log('Ready!');
 
         const channel = client.channels.cache.get('821108614554189849') as TextChannel;
 
         const rule = new schedule.RecurrenceRule();
-        rule.dayOfWeek = 4;
-        rule.hour = 10;
+        rule.dayOfWeek = 3;
+        rule.hour = 22;
         rule.minute = 0;
 
         schedule.scheduleJob(rule, function(){
