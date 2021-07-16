@@ -19,18 +19,20 @@ module.exports = {
         const channel = client.channels.cache.get('821108614554189849') as TextChannel;
 
         const rule = new schedule.RecurrenceRule();
-        rule.dayOfWeek = 3;
-        rule.hour = 22;
+        rule.dayOfWeek = 4;
+        rule.hour = 12;
         rule.minute = 0;
+        rule.tz = 'Europe/Helsinki';
 
         schedule.scheduleJob(rule, function(){
           if(channel) channel?.send('@everyone Heipä hei mussukat! Muistakaahan, että meillä on kokous tänään kello 18 (ellei toisin olla sovittu)!');
         });
 
         const rule2 = new schedule.RecurrenceRule();
-        rule.dayOfWeek = 4;
-        rule.hour = 22;
-        rule.minute = 0;
+        rule2.dayOfWeek = 4;
+        rule2.hour = 22;
+        rule2.minute = 0;
+        rule2.tz = 'Europe/Helsinki';
 
         schedule.scheduleJob(rule2, () => {
           const who = data.who;
