@@ -1,3 +1,5 @@
+import data from './who.json';
+
 export const kMembers = [
     "Ville",
     "Juhana",
@@ -9,3 +11,7 @@ export const kMembers = [
     "Kari",
     "Patrik",
 ];
+
+export let who = data.who;
+
+export const setWho = (value: number) => who = value;

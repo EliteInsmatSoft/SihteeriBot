@@ -6,7 +6,7 @@ import schedule from 'node-schedule';
 import { Client } from '../index';
 import { kMembers } from '../constants';
 
-import data from '../who.json';
+import { who, setWho } from '../constants';
 
 module.exports = {
 	name: 'ready',
@@ -35,10 +35,14 @@ module.exports = {
         rule2.tz = 'Europe/Helsinki';
 
         schedule.scheduleJob(rule2, () => {
-          const who = data.who;
-          who + 1 < kMembers.length ? 
-          fs.writeFileSync('who.json', JSON.stringify({ who:  who + 1 })) : 
-          fs.writeFileSync('who.json', JSON.stringify({ who:  0 }));
+          if(who + 1 < kMembers.length) {
+            fs.writeFileSync('who.json', JSON.stringify({ who:  who + 1 }));
+            setWho(who+1);
+          }
+          else {
+            fs.writeFileSync('who.json', JSON.stringify({ who:  0 }));
+            setWho(0);
+          }
         });
 	},
 };
